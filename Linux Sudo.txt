@@ -1,0 +1,8 @@
+sudo(super user do) permission : super user 또는 root user
+
+rm -rf / : 루트 디렉토리의 모든 파일들을 삭제해버림.
+
+apt-get install git -> 깃 설치 우분투 permission denied
+
+sudo apt-get install git (루트 권한으로 명령어 실행)
+
