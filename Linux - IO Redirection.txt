@@ -1,0 +1,19 @@
+1장.
+IO Redirection - 입출력 방향전환
+
+ls -l > result.txt : ls -l 로 조회된 값을 result.txt 파일 안에 저장
+
+cat result.txt (파일 읽기)
+
+
+ls -l >(redirection 기호) result.txt 
+
+ls -l (input에 대한) output 을 > 를 통해 redirection 하여
+output 결과값을 txt 파일에 저장하게 되는것이다!
+
+출력의 방향을 전환 한 것이다.
+
+standard outpout 만 redirection 가능 >(1을 생략한 것) or 1>
+standard error에 대한 redirection 은 2> 로 사용해야 함
+ex ) rm result.txt 2> error.log : error.log 파일에 rm result.txt 명령에 대한 오류를 저장
+

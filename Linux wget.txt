@@ -1,0 +1,16 @@
+다운로드를 받을 때,  wget 명령어를 자주 이용..
+
+wget + url 주소(다운로드 link)
+
+
+linux copy & paste
+
+Shift + Ctrl + C  or Ctrl + Insert
+Shift + Ctrl + V  or Shift + Insert
+
+
+
+
+wget -O(옵션) + paris.jpeg  + url 주소
+
+다운로드 받은 파일을 paris.jpeg 로 저장된다.

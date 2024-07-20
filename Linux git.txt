@@ -1,0 +1,15 @@
+git - 버전 관리 시스템 - category 
+
+git 은 윈도우 mac linux 모두 사용 가능.
+운영체제에 종속되지 않음.
+
+linux 에서 설치
+sudo apt-get install git (설치)
+
+open source 를 다운로드(cloning)
+
+git clone + url (repo url은  .git 으로 되어있음 ) dest_src(다운로드 받을 디렉터리)
+
+dest_src 디렉토리 안에 소스가 다운로드 받아짐.
+
+

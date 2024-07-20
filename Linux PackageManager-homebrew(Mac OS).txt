@@ -1,0 +1,10 @@
+Homebrew
+
+프로그램을 설치해주는 installer (like appstore) : 전문적으로는 PackageManager
+
+brew.sh 
+사이트에서 명령어 카피
+
+(Mac OS) terminal.app실행 ->  카피한 명령어를 paste 및 설치
+
+나는 Mac 사용자가 아니므로 ... skip

@@ -1,0 +1,40 @@
+Package manager
+
+mkdir ls 이런 것들도 패키지에 포함되어있는 명령어들(기본제공 패키지)
+
+패키지 매니저 사용방법
+apt , yum 
+
+apt 기준 설명
+apt 패키지 매니저를 사용하기 위해서는 ...
+apt-get update; (web 환경에서는 지원이 안되는듯?)
+sudo apt-get update;(권한)
+
+sudo apt-cache search htop (htop 패키지에 대한 검색) 
+
+sudo apt-get install htop (설치)
+
+
+top : 현재 리눅스에서 실행중인 프로그램의 목록을 보여주는 명령어(q를 누르면 종료)
+
+htop 패키지: top 보다 상당히 그래피컬한 느낌... + 프로세스 종료
+
+package 를 upgrade 하고싶을때,
+sudo apt-get upgrade -- 모든 프로그램에 대한 upgrade
+package manager 가 제공하는 중요한 기능 중 하나
+
+삭제하고 싶을 때,
+sudo apt-get remove htop
+
+
+내가 설치할 수 있는 프로그램의 목록을 update 할때,
+sudo apt-get update;
+
+sudo apt-cache  search hto : hto 로 시작 하는 모든 설치 가능 프로그램 목록을 보여준다.
+
+특정 프로그램만 업그레이드 하는 경우
+sudo apt-get upgrade 프로그램명
+
+
+
+
