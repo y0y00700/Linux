@@ -1,0 +1,27 @@
+Shell & Kernel(쉘 & 커널)
+1장. inst
+kernel shell(google 이미지)
+
+hardware > kernel > shell > application
+
+kernel : 운영체제를 제어하기 위해 중심이 되는 코어 (하드웨어 제어)
+shell : 사람이 이해하기 쉬운 형태의 명령어를 입력하면, 해당 
+         명령어를 해석해서 kernel 에 전달하는 역할(명령어 해석)
+
+
+2장. zsh vs bash
+
+sudo apt-get install zsh
+
+zsh 가 설치되었고, zsh 을 통해 명령어를 해석 시킬수 있다.
+
+bash와 zsh 은 부모가 같기 때문에 상당히 유사함.
+zsh 는 좀더 편리한 기능을 가지고 있다.
+
+zsh이 설치된 채로 
+zsh + Enter 
+시 zsh 모드로 변경된다.
+bash + Enter 시, bash모드로 변경
+
+echo $0 -> 현재 어떤 shell 을 사용중인지 출력
+
