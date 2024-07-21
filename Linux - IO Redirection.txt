@@ -17,3 +17,42 @@ standard outpout 만 redirection 가능 >(1을 생략한 것) or 1>
 standard error에 대한 redirection 은 2> 로 사용해야 함
 ex ) rm result.txt 2> error.log : error.log 파일에 rm result.txt 명령에 대한 오류를 저장
 
+2장. Input (실용성은 없는편..)
+standard Input 
+cat 이후 enter 를 누르면 입력대기 상태로 간다.
+만약 input 을 하면 input 을 output 한다. (종료는 ctrl + d or c)
+즉, standard Input 을 받고 있는것..
+
+cat < hello.txt : cat 으로 입력되는 위치를 
+hello.txt에 있는 값을 입력으로 redirection 한다.(standard input으로 )
+
+즉 '<' 꺽쇠는 std.in (스탠다드 인풋) 을 의미한다.
+
+head linux.txt (기본 10줄출력)
+head -n1 linux.txt (1줄만 출력함..)
+
+
+3장. append
+ls -alt > pr.txt 
+ls -alt > pr.txt  
+cat pr.txt
+두줄을 넣으면 pr.txt 는 계속 변경된 값을 덮어쓴다(overwrite)
+추가(append)하려면 
+ls -alt >> pr.txt 
+
+
+std.in
+mail k509626@gmail.com <<원하는 문자열
+hi 
+my
+name
+is
+min
+원하는 문자열
+
+'원하는 문자열' 입력시 입력이 종료된다.
+즉 '<<' 꺽쇠 두개뒤 입력된 문자열로 입력을 종료되는 뜻
+
+ls -al > /dev/null 
+유닉스 계열은 /dev/null 은 휴지통과 같음.
+따라서 ls -al 을 출력하지 않고 휴지통에 output 을 집어넣는것과 같다.(아무일도 일어나지 않음.)
