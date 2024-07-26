@@ -25,3 +25,35 @@ bash + Enter 시, bash모드로 변경
 
 echo $0 -> 현재 어떤 shell 을 사용중인지 출력
 
+3장. Shell Script
+순차적으로 실행되야 하는 명령의 순서를 짜는것(대본)
+디렉터리 생성 및 이동
+mkdir script
+cd script/
+확장자가 .log 인 파일들을 bak 경로에 백업
+touch a.log b.log c.log (a,b,c log 파일 생성)
+
+mkdir bak
+cp *.log(확장자가 log인 모든 파일) bak
+ls -l bak
+
+ls /bin (**root 안에 bin 디렉터리 : 기본적인 명령어, unix 계열에 기본 프로그램이 위치한 디렉터리)
+
+backup 프로그램 생성
+nano backup
+#!/bin/bash // 지금 작성하는 backup 프로그램은 운영체제는 #! 기호를 본다. => bin의 bash 를 통해 해석된다는 뜻
+if ! [ -d bak ]; then  // bak 라는 디렉터리가 존재하지 않으면,
+	mkdir bak    // mkdir 명령문 실행
+fi                     // 조건문 종료
+cp *.log bak     // 확장자가 log 인 모든 파일을 bak 디렉터리에 복사
+ 
+shell 실행 
+./backup
+
+chmod +x backup(실행 가능 파일로 변환)
+※ x 가 붙어있으면 exacutable (실행가능) 파일이다.
+
+rm -rf bak (디렉터리 내부 모두 삭제 후,,)
+
+다시 실행
+./backup
