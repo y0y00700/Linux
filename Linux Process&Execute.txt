@@ -1,0 +1,130 @@
+Process  
+1장. Computer Structure
+
+특징 
+CPU (Processor)
+메모리 (RAM) : 가격이 비싸다. 저장용량이 작다.
+저장장치 (Storage) : 가격이 싸다. 저장용량이 크다.
+
+메모리에 저장장치에 저장된 데이터를 가져옴(Fetch)
+메모리가 가지고 온 주소값 혹은 Operland 를 
+Processor 가 연산 처리
+
+command 
+mkdir , top , rm ...
+존재 -> /bin , /sbin
+storage에 파일의 형태로 존재 = Program
+실행중에 있는 Program을 'Process' 라고 부른다.
+
+2장. 프로세스 모니터링(ps ,top ,htop)
+
+ps : 프로세스 리스트를 보여주는 명령어
+ps aux -> 전체 프로세스 리스트 출력
+ps aux | grep apache -> 전체 프로세스 리스트 중 apache 를 찾아 출력
+
+PID : 프로세스 아이디(프로세스 식별자)
+sudo kill PID -> 해당 프로세스 kill
+
+sudo top : 프로세스 리스트 + cpu/mem 등등...
+sudo htop : 좀 더 그래피컬한 느낌의 top
+
+top 에서 column 을 더블클릭하면 해당 컬럼 기준으로 정렬해준다..
+
+top 혹은 htop 에서 Load agerage 는 시간별 부하량을 뜻한다. (5분 15분 30분 ) 형태의
+만약 CORE 가 4개인데, 부하량이 4미만이라면 적절...?
+CPU 의 코어수에 따라 해당 Load average는 분석이 달라질 수 있다.
+
+
+3장. 백그라운드 실행(BackGround)
+unix계열에서 background 실행하기..
+만약 a.html 하나를 nano 로 생성 하였을때, 
+해당 작업을 끄지 않은 상태로 다른 작업을 하고 싶을 경우,
+1. ctrl + z
+ctrl + z 를 통해 현재 실행중인 nano editor를 background 로 변경이 가능하다.
+작업 이후 
+1-1. fg
+fg 입력시 작업중이던 nano Editor 로 복귀한다.
+
+fg %1 ~ background 실행중인 프로세스 개수 : %뒤 숫자의 프로세스를 foreground 로 변경함.
+
+kill %2 : background 삭제 
+
+kill -9 %2 : 좀더 강력한 삭제
+
+2. jobs
+jobs 입력시 : 현재 background 작업 프로세스를 확인할 수 있다.
+
+
+ls -R /경로 : 지정한 경로 모든 디렉터리 리스트를 보여줌...
+
+
+
+4장. 데몬의 개념(Daemon)
+데몬프로그램은 '항상' 켜져 있다.
+ex) 모뎀 , 전자도어락 , 냉장고 같이 항상 켜져 있는 것에 비유
+
+필요할때 켰다 끄는 프로그램 ex) ls , mkdir, rm 등등...
+항상 켜져 있어야 하는 프로그램 ex) Server
+
+5장. 데몬 사례 
+apache 설치
+sudo apt-get install apache2
+
+cd /etc/init.d/ (설치 경로)  이동
+
+sudo service apache2 start  // apache2 서버 실행
+ps aux | grep apache2 // 프로세스 확인
+
+sudo service apache2 stop // apche2 서버 중지
+
+Daemon 프로그램은 필수적으로 start/stop 이 존재함..
+
+반드시 service 명령어를 통해 start stop 된다.
+
+rc3.d/ (CLI), rc5.d/ (GUI)
+
+ls -l 해보면,  
+S02apache2 ->../init.d/apache2 외에도 많은 프로세스들이 돌고 있는 것을 확인 할 수 있다.
+즉 rc3.d/ 디렉터리는 OS 가 시작될 때,데몬들이 자동으로 올라가 실행하는 경로이다.
+Symbolic link : 바로가기 같은 것
+실제 경로는 init.d 에 있으나  S02apache2 라는 이름만 있는 것으로
+etc/rc3.d/  내부에 심볼릭 링크로 걸린 프로세스는 자동 실행된다.
+
+**자동으로 실행하고 싶을 경우 (auto start)
+etc/rc3.d/ 안에 링크를 걸면 os 를 시작할 시, 자동으로 실행 한다.
+
+GUI의 경우 etc/rc5.d/ 에 걸어줌..
+
+
+
+6장 Cron : 정기적 실행 도구
+
+command : crontab -e 
+(google search crontab expression : 표현식 찾아보기..)
+min hour day month weekday command
+1/* * * * * date >> date.log  : 1분마다 한번씩 현재 시각 파일에 저장
+
+tail -f date.log  : date.log 의 꼬리에 업데이트되는 텍스트를 실시간으로 출력해준다..
+
+빠져나갈때 ctrl + c
+
+crontab -e
+*/1 * * * * * date >> date.log '2>&1' : 표준에러를 std:out 표준 출력으로 redirection 해줌...
+
+
+
+7장. Cron2
+예를들어 Web Service에서, mail 전송 버튼을 누를시,
+Server에서는 전송된 status (ex.save) 를 log에서 바라보고 있다가,
+save 를 확인하면 자동으로 mail 을 전송해주는 형태(cron을 통해)
+가 하나의 예시가 될 수 있다.
+
+
+8장. 쉘을 시작할 때 실행 : 쉘의 startup 스크립트
+(alias l='ls -al'
+  l이라고 입력시 ls -al 이 된다.(별칭 : 단축키 설정..) )
+cd ~
+
+nano .bashrc 
+** 쉘이라는 프로그램이 .bashrc 를 읽도록 약속되어있음.
+** 이 내부에 alias 나 명령어 등을 수정하면, 해당 세팅 내용이 쉘 기동 순간 시작된다.
