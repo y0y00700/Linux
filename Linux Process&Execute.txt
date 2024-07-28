@@ -81,7 +81,7 @@ Daemon 프로그램은 필수적으로 start/stop 이 존재함..
 
 반드시 service 명령어를 통해 start stop 된다.
 
-rc3.d/ (CLI), rc5.d/ (GUI)
+etc/rc3.d/ (CLI), etc/rc5.d/ (GUI)
 
 ls -l 해보면,  
 S02apache2 ->../init.d/apache2 외에도 많은 프로세스들이 돌고 있는 것을 확인 할 수 있다.
