@@ -1,0 +1,49 @@
+1장. Multi User (다중 사용자) inst.
+여러명이 운영체제를 같이 사용할 수 있는 방법
+복잡성 , 문제점 등을 확인
+
+
+2장. 다중사용자 - id, who
+id 명령어 (식별자) 
+uid : 유저 아이디 -> 내가 로그인 한 id
+gid : 그룹 아이디
+
+who 명령어 : 현재 접속중인 user 출력
+
+
+3장. 관리자와 일반 사용자
+super(root) user VS user
+※ sudo(superUser do 의 약자임)
+
+(root  # (샾 표시) 는 슈퍼 유저 , $ (달러표시) 는 일반유저)
+
+superUser 로 접근하기 위해선?
+su - root  (엔터시,)
+password: 비밀번호 입력 
+
+일반 유저로 돌아가려면 ? 
+exit (+ Enter) : superUser logout 
+
+-1. passwd 
+sudo passwd -u root (root 권한의 password 를 unlock)
+sudo passwd -l root (root 권한의 password 를 lock -> 비밀번호 변경)
+
+superUser로 접속시 home 디렉터리는 /root
+일반 User 접속시 Home 디렉터리는 /home 이다.
+
+4장. 사용자 추가(add User)
+google search unix add user
+
+useradd -m tom (-m 은 홈디렉터리를 같이 만들어준다.)
+sudo useradd -m tom : tom 사용자를 만들고 홈 디렉터리를 함께 셋팅해줌.
+sudo passwd tom (tom의 비밀번호를 설정한다.)
+
+※ 또다른 유저 추가 명령어 : sudo adduser tom
+
+sudo 권한 주기
+sudo usermod - a -G sudo duru( -a 옵션은 append -G 옵션은 그룹)
+
+
+해당 User 접근 명령어
+su - tom
+
