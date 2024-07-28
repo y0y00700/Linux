@@ -1,0 +1,63 @@
+1장. Permission(권한) Basic
+Unix 에서 permission 으로 주는 권한은? 
+File & Directory에 대해서 권한을 부여.
+종류 : Read , Write , Execute
+ex) (touch perm.txt 생성 및 echo 'hi' > perm.txt - root 권한으로 생성 및 수정)
+-rw-rw-r-- 1 root root 3 Jul 28 18:38 perm.txt 
+(맨앞 '-' 가 d 이면 directory임)
+(스크린 샷 참조)
+
+※ rwx
+r - read 
+w - write
+x - execute
+
+
+2장. 권한 변경 (chmod)
+access mode
+type | owner | group | other
+
+access mode 를 변경 하는 명령어 'chmod'
+
+chmod o-r perm.txt (perm.txt 파일 other의 read 권한을 제거)
+chmod u-r perm.txt (perm.txt 파일 소유자(User)의 read 권한을 제거)
+
+3장. 실행(Execute)
+x : execute (실행) 
+file 에 대해서, 실행가능한 파일로 지정할 것인가? 를 정하는 것.
+nano hi-Machine
+#!/bin/bash 
+echo 'Hello World!'
+chmod u+x hi-Machine (user에게 hi-Machine의 실행 권한을 부여)
+
+./hi-Machine  -> 실행시 Hello World 가 출력된다.
+
+
+
+4장. Directory에 대한 권한
+한번에 명령어 실행하기
+mkdir perm;cd perm;echo 'hi' > perm.txt
+
+디렉터리의 read 권한이 없으면, 디렉터리 내부 조회가 불가능해진다.
+write 권한이 없는 경우엔, 디렉터리 내부에  file 혹은 Directory 를 생성하지 못하게 된다.
+execute 권한이 없는 경우 cd 명령어로 이동이 불가능해진다.
+
+chmod -R o+w perm 
+※ -R 옵션은 recursive 적이므로, perm 디렉터리 내부 모든 파일이나 
+   디렉터리의 other 사용자의 write 권한을 모두 부여하는 것.
+
+
+
+5장. chmod 총정리(class operation)
+chmod [options] mode[,mode] file1 [file2 ...]
+
+Octal modes 구글 검색하면 나옴..
+ex) chmod 111 perm.txt (execute 모드만 전부 추가됨)
+
+또 다른 모든 클래스 사용자에 추가하기 방법
+ex) chmod a+r perm.txt (all -> 모든 사용자에 대해 r 을 추가)
+
+모든 클래스 사용자에 추가하기 방법2
+chmod a=rwx perm.txt 
+
+ 
