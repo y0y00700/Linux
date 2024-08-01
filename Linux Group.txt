@@ -1,0 +1,36 @@
+1장. 파일과 디렉토리를 여러 사용자들이 공동으로 관리할 수 있는 방법(Group) inst.
+
+권한을 주고 싶은 사람들을 그룹으로 묶는다.
+Group 에 이름을 부여 : ex) developer , administator ... etc
+file 에 대한 group 권한을 부여함으로, 그룹 내 모두에게 권한 부여가 가능하도록..
+
+그룹 실습
+cd /var
+sudo(권한없는경우) mkdir developer
+
+sudo echo 'hi, egoing' > egoing.txt
+
+developer group 만들기
+google Search  : add user to group
+useradd -G {group-name} username : 사용자 생성 + Group에 지정할때,
+
+groupadd groupname : group 새로 생성.
+
+sudo groupadd developer 
+※ !! 두번은 직전에 사용했던 명령어를 실행
+
+nano /etc/group : 추가한 그룹이 생성되는 파일임...
+
+usermod : 사용자 수정 모드
+
+그룹에 사용자 추가하기
+sudo usermod -a -G developer username : -append 옵션은 -Group 옵션과 함께 사용해야만 한다.
+
+디렉터리의 소유그룹 변경하기
+chown 
+sudo chown  root(소유자 변경시 이쪽):developer(그룹 변경시 이쪽)
+
+
+
+
+

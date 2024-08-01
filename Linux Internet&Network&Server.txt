@@ -1,0 +1,80 @@
+1장. Internet/Network/Server 에 대한 inst.
+
+예를 들어 두대의 컴퓨터가 있다.
+my  < > google.com
+
+webbrowser에 google.com 을 치면 
+-> google.com 서버 컴퓨터로 접속요청(request)
+-> google.com 서버에서 my 컴퓨터로 응답 (response)
+
+이러한 컴퓨터들간의 통신을 구분하자면,
+접속을 요청하는 컴퓨터를 client
+응답해주는 컴퓨터를 server 라고 부른다.
+
+여기서 생산자인 Server 에 대한 개념을 배운다.
+google.com => domain name (ip{Internet Protocol} address)
+
+web 브라우저에서 google.com 을 입력하면 Internet Protocol을 통해 
+google.com 서버 컴퓨터로 접근 요청을 보낸다.
+
+DNS 서버가 존재하며, google.com 을 입력 시, 해당 IP address 를 치환하여 
+해당 서버에 보내주는 것.
+
+2장. 내 Server 는 어떤 IP 를가지고 있는지 확인하는 법.
+1. ip addr + Enter 시, inet 이후의 ip가 해당 컴퓨터의 address 이다.
+
+ipinfo.io/ip -> ip 확인 링크
+
+2. curl ipinfo.io/ip -> 해당 링크를 다운 받아 출력하므로 ip를 확인 가능
+
+1,2 번 방법을 모두 해봤을 때, ip address 가 다를 수 있다
+why?
+ip addr 은 linux Server 의 실제 ip
+2번은 결과로 받은 ip를 리턴
+
+※ 2번의 이유 ->
+             (public ip)                   (private ip)
+통신사 - 211.46.24.37 - Router  -   com1 (10.0.3.3)
+                                           ㄴ com2 (10.0.3.2)
+                                           ㄴ com3 (10.0.3.1)
+하나의 회선으로 여러대의 컴퓨터를 연결 (회선 사용비는 감소) 
+하나, 출입의 IP는 하나임.
+
+※ Private IP (사설 IP) 
+Router 내부에서 구분되는 IP
+
+3장. Apache inst.
+web server를 linux에 설치하는 방법 설명.
+Apache , nginx , IIS 등등의 웹서버가 존재한다.
+
+(domain name, ip address)
+
+4장. apache Install
+설치.
+1.sudo apt-get update; (목록 업데이트)
+2.sudo apt-get install apache2(강의 시점)
+이름 검색
+sudo apt-cache search apache (apache로 검색)
+
+3.sudo service apache2 start(시작)
+ (sudo service apache2 stop(중지)
+  sudo service apache2 restart(재시작))
+
+htop 혹은 top 으로 제대로 apache가 잘 켜졌는지 확인
+
+많은 접속을 분산처리 하기 위해 여러개의 apache webserver 프로세스가 떠 있다.
+
+sudo apt-get install elinks 설치 (linux에서 web 브라우징을 하기 위한 툴)
+
+elinks + http://10.0.2.15/ -> page 가 뜨는 경우 정상적으로 설치 및 접속 된 것.
+
+혹은 
+localhost(127.0.0.1) (자기자신 : LoopBack) 
+elinks 127.0.0.1(http://localhost) 로 호출해도 확인이 가능하다.
+
+
+
+
+
+
+
