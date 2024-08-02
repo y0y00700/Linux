@@ -1,0 +1,29 @@
+1장. ssh inst. 
+
+server의 원격제어 프로그램 ssh  : 
+unix 계열의 computer 는 shell 을 통해 제어하기 위해 
+네트워크를 통해 원격으로 제어할 수 있도록 하는 프로그램.
+
+ssh client와 ssh server가 깔려 있어야 한다.(원격제어 대상 server 컴퓨터와 원격제어 컴퓨터에 각각) 
+ssh도 동일하게 client 와 server 의 개념이 거의 동일하다.
+
+최근 unix 운영 체제에는 ssh 가 기본적으로 깔려 있다.
+
+2장. ssh 설치
+sudo apt-get remove purge (purge는 강력한 삭제)
+
+기존 설치되었던 ssh 삭제
+sudo apt-get remove purge openssh-server openssh-client (ssh client 와 server 삭제)
+재설치
+sudo apt-get install openssh-server openssh-client 
+프로그램 시작
+sudo service ssh start 
+확인
+sudo ps aux | grep ssh
+
+ipaddr ip 확인
+
+접속 예시)
+ssh egoing@10.5.204.127
+
+

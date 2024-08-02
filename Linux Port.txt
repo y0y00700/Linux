@@ -1,0 +1,52 @@
+1장 Port 란? 
+만약 naver.com 을 접속할 때, naver.com:80 을 해도 동일하게 접속된다.
+하지만 :80이 아니면 접속이 되지 않는다.
+이것이 바로 port 를 의미한다.
+
+ssh 접속도 마찬가지이다. (통상적으로 ssh 는 22번 port 를 사용하기 때문..)
+ssh -p 22 root@10.185.220.165 
+
+port 는 0~65000여개가 있다.
+web 은 80 
+ssh 는 22 
+
+port 는 입구이자 출구이다. :즉 통로 (request 에 대한 response 도 같은 port 로 나간다.)
+
+0~1024까지의 포트는 well-kwown port 이다.
+
+1025 ~ 65000여번까지는 부여해서 사용하면 되겠다.
+
+sudo nano etc/ssh/sshd_config 파일을 보면,  default port 확인 및 변경 할 수 있다.
+
+2장. Port forwarding(포트 포워딩)
+ex) 
+ISP    (211.46.24.37)     - ROUTER  - 192.168.0.1
+		   	    ㄴ 192.168.0.2
+		   	    ㄴ 192.168.0.3 (server 설치)
+해당 예시에서 router가 특정 컴퓨터로 전달(private ip addr) 하는 방식이 포트 포워딩이다.
+
+ 211.46.24.37:9000 으로 접근시, 
+     router 에서 9000->192.168.0.3 으로 가라라고 설정하는 것. (port forwarding)
+
+공유기 내부에만 적용되는 것 : default gateway
+
+3장. port forwarding 실습
+ifconfig (또다른 ip확인방법 명령어)
+ip route (default gateway ip 확인 default via 10.5.0.1) 
+
+WB 에서 10.5.0.1 -> 들어가면 공유기 설정 볼 수 있다...
+
+즉 default gateway를 알아내면 웹 브라우저로 접근 가능
+
+고급 설정 > NAT/라우터 관리 > 포트포워드 설정
+규칙 설정 
+외부포트 -> 9000
+내부포트 -> 80
+
+누군가 9000번 포트로 접근했을 때, 내부 80번 포트로 접근가능하도록 설정 한 것이다.
+
+외부 ip알아내기
+curl http://ipinfo.io/ip
+혹은 WB 로 http://ipinfo.io/ip 로 확인
+
+
