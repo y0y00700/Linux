@@ -72,9 +72,26 @@ elinks + http://10.0.2.15/ -> page 가 뜨는 경우 정상적으로 설치 및 
 localhost(127.0.0.1) (자기자신 : LoopBack) 
 elinks 127.0.0.1(http://localhost) 로 호출해도 확인이 가능하다.
 
+5장. apache - configuration
+WB      ->   WS (storage -> HDD/SSD의 정적 소스를 리턴)
+client          server
+
+cd /etc -> 동작 방법의 설정들이 저장되어있다. 
+cd /etc/apache2 에는 아파치 서버의 동작 정보들이 저장되어있음.
+apache2.conf (apache server configuration 파일)
+/var/www/html 
+  -> html 파일 리턴 위치 (apache2.conf 파일 enable 밑에 적혀있는 위치이기 때문: 변경가능)
 
 
+document root 
 
+6장. apache - log
+(/etc/apache2/apache2.conf 파일 내부) 
+ErrorLog ${APACHE_LOG_DIR}/error.log  ->에러 로그 적재 경로
+/var/log/apache2/ 경로에 access.log , error.log 파일 두개 있음. 
 
+실시간 로그 보기
+tail -f /var/log/apache2/access.log ->끝에 생성되는 로그만 출력 
+tail -f /var/log/apache2/error.log
 
 
