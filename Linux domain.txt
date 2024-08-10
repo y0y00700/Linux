@@ -1,0 +1,68 @@
+1장. domain inst.
+DNS : Domain Name System 
+DNS 는 text 를 읽어서 ip addr 를 리턴한다.
+
+2장. hosts 파일
+elinks -> Web Browser 처럼 사용..
+elinks http://localhost
+nano /etc/hosts
+
+웹 서버에 접속시, hosts 파일에 IP가 있는지 먼저 확인하여 만약
+존재하면 DNS 서버에 접근하지 않고 direct 접근한다.
+
+3장. Domain Purchase
+cat /etc/resolv.conf
+nameserver ip
+
+resolv.conf 에는 DNS 서버의 IP 값을 저장하고 있음.
+freenom 검색 혹은 free domain 으로 검색
+postfix인 .kr , .jp .com 등의 도메인들확인.. 
+무료사용가능 도메인도 확인된다.
+도메인을 확정 및 구매한 이후, Domain Management 접근
+target ip 에 나의 Server ip 기입 
+
+명령어
+host + 도메인 입력 시 , 해당 도메인의 IP 를 알려줌.
+ex ) host google.com
+
+4장. Sub Domain
+egoing.ga
+admin.egoig.ga
+blog.egoing.ga 
+news. --- ... 
+각각의 도메인에 서브 도메인(prefix)
+운용하는 방법
+도메인 구입처에서 management
+Add Record 에
+admin
+blog
+news 등등을 추가
+서브 도메인에 서로 다른 서버 ip 를 넣을 경우
+하나의 도메인으로 여러개의 분산 시스템을 붙일 수 있음.
+
+
+5장. DNS서버 구동 방식
+dig + trace egoing.ga
+
+도메인의 마지막에는 . 이 하나 생략되어있음
+ex) google.com.
+마지막 온점은 root를 의미
+
+root DNS Server 는 10대가 넘게 있다.
+해당 DNS 서버가 죽는 경우, 마비..
+우리의 클라이언트에 연결된 root DNS 서버를 반드시 알고 있다.
+root DNS 서버는 잘 바뀌지 않음.
+담당하는 DNS 서버가 어떤 서버인지 확인
+.ga 를 담당하는 서버를 확인
+root DNS 서버는 그 결과를 돌려준다.
+.ga 를 담당하는 서버에 egoing.ga 를 쓰는 IP 를 돌려준다.
+
+즉, 
+  root DNS 서버
+  -> .ga를 관리하는 (.com,.kr등등) DNS 서버
+    -> IP 주소 리턴
+
+Management tool
+Nameservers 에서 관리하느 NameServer 를 변경 할 수 있다.
+
+.끗.
