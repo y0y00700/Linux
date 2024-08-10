@@ -1,0 +1,20 @@
+1장. rsync inst. (remote sync)
+두대의 Server 를 동기화
+mkdir rsync
+mkdir src
+mkdir dest 
+
+src 에 File 을 만들고 dest 에 동기화 (복사) 
+touch test{1..10} -- 열개의 파일이 생성할 때, 사용
+
+rsync -a src/ dest 
+rsync 명령어는 증분 백업을 한다.
+rsync -av src/ dest  
+v옵션 추가시 해당 sync의 상세내역을 출력.
+
+3장. Remote sync
+rsync -azP ~/rsync/src/ k8805@192.168.0.65:~/rsync/dest
+z 옵션은 압축
+
+컴퓨터와 컴퓨터 사이의 복사 (동기화) 할 수 있도록 하는 기능(CI/CD의 기초.)
+

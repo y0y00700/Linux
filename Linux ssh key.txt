@@ -1,0 +1,57 @@
+1장. ssh 자동 로그인 
+공개키 비공개 키를 이용한...
+ip addr 
+
+ssh egoing@192.168.0.67
+id / pw 통해 접근해야 함..
+
+ssh-keygen 명령어 입력시 key 가 생성된다. (id_rsa 라는 파일로 생성됨)
+cd .ssh
+ls -al
+cd perm
+
+1번 com
+id_rsa  - private key 
+id_rsa.pub - public key
+2번 com
+authorized_keys
+known_hosts
+
+로그인하고자 하는 곳에 공개키를 저장시키면 
+id/pw 없이 로그인 가능
+
+authorized_keys 파일 내부에 id_rsa.pub 에 복사
+
+ssh-copy-id egoing@192.198.0.67  // 위에 해야 하는 복사 하는 행위를 해주는 명령어
+
+정리.
+ssh-keygen 으로 공개키와 비공개키를 생성
+ssh-copy-id + 로그인하려는 컴퓨터 ip
+
+2장. 공개키를 통한 접근의 장점
+rsync 
+rsync 는 기본적으로 ssh 통신방식을 사용하기 때문에, 
+해당 공개키를 통해 사용하면 cron(정기적 batch) 과 같은 기능을 이용할 때,
+공개/비공개 키를 이용해 정기적 백업을 자동으로 처리할 수 있다.
+
+3장. 공개키와 비공개키 작동 원리
+key 를 통한 encrypt , decrypt (암,복호화)
+
+private key , public key 
+암호화할 때 private key 
+복호화할 때 public key 를 사용 (비 대칭적) 
+그 기술이 RSA
+
+만약 동일 key 로 암복호화를 하는 경우에는 대칭적이다.
+
+ssh client (id_rsa, id_rsa.pub , known_hosts)
+ssh server (authorized_keys , known_hosts)
+
+ssh server는 Random key를 ssh client에 준다.
+ssh client는 다시 암호화 하여 해당 암호화된 key 를 다시 server에 준다.
+ssh server는 authorized_keys를 통해 해당 복호화 시켜 인증값을 전송한다.
+(확인이 완료됨.)
+
+비대칭성을 가진 RSA 방식으로 인증을 한다..
+
+.끗.
